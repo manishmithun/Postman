@@ -1,0 +1,654 @@
+{
+	"info": {
+		"_postman_id": "79bde5a4-d7fe-4207-915d-81c11a813bc9",
+		"name": "ServiceNow",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Incidents",
+			"item": [
+				{
+					"name": "GetAllIncidentsUsingJSON",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"INC\");\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://dev117847.service-now.com/api/now/table/incident?sysparm_fields=number,sys_id",
+							"protocol": "https",
+							"host": [
+								"dev117847",
+								"service-now",
+								"com"
+							],
+							"path": [
+								"api",
+								"now",
+								"table",
+								"incident"
+							],
+							"query": [
+								{
+									"key": "sysparm_fields",
+									"value": "number,sys_id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllIncidentsUsingXml",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"INC\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://dev117847.service-now.com/api/now/table/incident?sysparm_fields=number,sys_id",
+							"protocol": "https",
+							"host": [
+								"dev117847",
+								"service-now",
+								"com"
+							],
+							"path": [
+								"api",
+								"now",
+								"table",
+								"incident"
+							],
+							"query": [
+								{
+									"key": "sysparm_fields",
+									"value": "number,sys_id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateNewRequestUsingJSON",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"short_description\":\"It is a Short description\"}"
+						},
+						"url": {
+							"raw": "https://dev117847.service-now.com/api/now/table/incident",
+							"protocol": "https",
+							"host": [
+								"dev117847",
+								"service-now",
+								"com"
+							],
+							"path": [
+								"api",
+								"now",
+								"table",
+								"incident"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateNewRequestUsingXML",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<request><entry><short_description>It is a Short Description</short_description></entry></request>"
+						},
+						"url": {
+							"raw": "https://dev117847.service-now.com/api/now/table/incident",
+							"protocol": "https",
+							"host": [
+								"dev117847",
+								"service-now",
+								"com"
+							],
+							"path": [
+								"api",
+								"now",
+								"table",
+								"incident"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateRequestUsingJSON",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"short_description\":\"Updated short description\"}"
+						},
+						"url": {
+							"raw": "https://dev117847.service-now.com/api/now/table/incident/9c0403c41b9a3010193f6464604bcb3c",
+							"protocol": "https",
+							"host": [
+								"dev117847",
+								"service-now",
+								"com"
+							],
+							"path": [
+								"api",
+								"now",
+								"table",
+								"incident",
+								"9c0403c41b9a3010193f6464604bcb3c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteARequest",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://dev117847.service-now.com/api/now/table/incident/46e18c0fa9fe19810066a0083f76bd56",
+							"protocol": "https",
+							"host": [
+								"dev117847",
+								"service-now",
+								"com"
+							],
+							"path": [
+								"api",
+								"now",
+								"table",
+								"incident",
+								"46e18c0fa9fe19810066a0083f76bd56"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "basic",
+				"basic": [
+					{
+						"key": "password",
+						"value": "jqIO1JKv4Ezc",
+						"type": "string"
+					},
+					{
+						"key": "username",
+						"value": "admin",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Change Request",
+			"item": [
+				{
+					"name": "Get All Change Request Using JSON",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"CHG\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{server}}api/now/table/{{table}}?sysparm_fields=number,sys_id",
+							"host": [
+								"{{server}}api"
+							],
+							"path": [
+								"now",
+								"table",
+								"{{table}}"
+							],
+							"query": [
+								{
+									"key": "sysparm_fields",
+									"value": "number,sys_id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Incidents Using XML",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{server}}api/now/table/{{table}}?sysparm_fields=number,sys_id",
+							"host": [
+								"{{server}}api"
+							],
+							"path": [
+								"now",
+								"table",
+								"{{table}}"
+							],
+							"query": [
+								{
+									"key": "sysparm_fields",
+									"value": "number,sys_id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a Change request Using XML",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<request><entry><short_description>Created in XML</short_description></entry></request>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}api/now/table/{{table}}",
+							"host": [
+								"{{server}}api"
+							],
+							"path": [
+								"now",
+								"table",
+								"{{table}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a Change Request using JSON",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"var resp=pm.response.json();\r",
+									"var id=resp.result.sys_id;\r",
+									"pm.globals.set(\"sys_id\", id);\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"short_description\":\"{{sd}}\"}\r\n"
+						},
+						"url": {
+							"raw": "{{server}}api/now/table/{{table}}",
+							"host": [
+								"{{server}}api"
+							],
+							"path": [
+								"now",
+								"table",
+								"{{table}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a change request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"short_description\":\"Updated Short Description\"}\r\n"
+						},
+						"url": {
+							"raw": "{{server}}api/now/table/{{table}}/{{sys_id}}",
+							"host": [
+								"{{server}}api"
+							],
+							"path": [
+								"now",
+								"table",
+								"{{table}}",
+								"{{sys_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a Change Request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{server}}api/now/table/{{table}}/{{sys_id}}",
+							"host": [
+								"{{server}}api"
+							],
+							"path": [
+								"now",
+								"table",
+								"{{table}}",
+								"{{sys_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "jqIO1JKv4Ezc",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "admin",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "table",
+			"value": "change_request"
+		}
+	]
+}
